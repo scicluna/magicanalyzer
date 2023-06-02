@@ -23,12 +23,29 @@ def magicanalyze():
             if deck != winner and not pd.isna(deck):
                 if deck not in winner_dict[winner]:
                     winner_dict[winner][deck] = 1
+                    winner_dict[winner][winner] = 0
                 else:
                     winner_dict[winner][deck] += 1
 
-    winner_matrix = pd.DataFrame(winner_dict)
-    winner_matrix = winner_matrix.transpose()
-    winner_matrix = winner_matrix.fillna(0) 
-    winner_matrix.to_csv('outputs/matrix.csv')
+    wm = pd.DataFrame(winner_dict)
+    wm = wm.transpose()
+    wm = wm.fillna(0) 
+    wm = wm.sort_index(axis=0)
+    wm = wm.sort_index(axis=1)
+
+    # Compute total wins
+    wm['Total Wins'] = wm.sum(axis=1)
+
+    # Compute total losses
+    wm['Total Losses'] = wm.sum(axis=0)
+
+    # Compute win percentage
+    wm['Win Percentage'] = wm['Total Wins'] / (wm['Total Wins'] + wm['Total Losses'])
+
+    # Move 'Total Wins', 'Total Losses', and 'Win Percentage' to the beginning
+    cols = ['Total Wins', 'Total Losses', 'Win Percentage']  + [col for col in wm if col not in ['Total Wins', 'Total Losses', 'Win Percentage']]
+    wm = wm[cols]
+
+    wm.to_csv('outputs/matrix.csv')
 
 main()

@@ -1,9 +1,14 @@
 -clean up gamelog.csv - DONE
 -read from gamelog.csv - DONE
--create a matchup matrix from the data
--display all in cli
--output the data in a new csv
+-create a matchup matrix from the data - DONE
+-output the data in a new csv - DONE
 
--Make a new column for each commander, 
--with rows representing each of their matchups. 
--Mark down wins against that commander
+-Make a new column for each commander, - DONE
+-with rows representing each of their matchups.  - DONE
+-Mark down wins against that commander - DONE
+
+-sort by alphabetical on both rows and columns
+
+-new areas for total wins
+-total losses
+-win percentage
