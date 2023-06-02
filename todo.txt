@@ -1,0 +1,5 @@
+-clean up gamelog.csv - DONE
+-read from gamelog.csv
+-create a matchup matrix from the data
+-display all in cli
+-output the data in a new csv
